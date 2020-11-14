@@ -1,0 +1,64 @@
+server:
+  port: 9042
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  http:
+    multipart:
+      enabled=false:
+  application:
+    name: naga-server
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/naga_dev?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: "123456"
+
+custom:
+  hadoop:
+    rm:
+      uri: 192.168.15.15:8088
+    nn:
+      uri: 192.168.15.15:50070
+    conf: /home/jixin/imooc_3/naga/naga-server/src/main/resources
+    proxyuser: root
+    hivemetastore: thrift://192.168.15.15:9083
+  task:
+    packageDir: /home/jixin/imoocprojects/naga/packages
+    azkaban:
+      server: http://192.168.15.15:8081
+      user: azkaban
+      password: azkaban
+      execHome: /soft/home/azkaban-exec-server
+    api:
+      server: localhost
+      port: "9042"
+  presto:
+    uri: jdbc:presto://192.168.15.15:9090/hive
+  hive:
+    uri: jdbc:hive2://192.168.15.15:10000/default
+  spark:
+    home: /soft/home/spark-2.4.4-bin-hadoop2.7
+  redis:
+    ip: 127.0.0.1
+    port: 6379
+  ranger:
+    url: http://192.168.15.15:6080
+    user: admin
+    pwd: admin
+    service:
+      hdfs: imooc_hdfs
+      hive: imooc_hive
